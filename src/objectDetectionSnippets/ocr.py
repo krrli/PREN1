@@ -8,7 +8,7 @@ import numpy as np
 #print pytesseract.image_to_string(Image.open('roemisch2.PNG'))
 
 #path = './bilder/roemisch2.PNG'
-path = './bilder/randomzahlen.jpg'
+path = 'randomzahlen.jpg'
 
 img = Image.open(path)
 print (pytesseract.image_to_string(img))
