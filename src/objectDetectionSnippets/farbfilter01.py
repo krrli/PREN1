@@ -1,32 +1,47 @@
 import cv2
 import numpy as np
 
-img_org = cv2.imread("IMG3.JPG")
-img = cv2.resize(img_org, (400,400))
+class Images():
+    path=''
+    def __init__(self, path):
+        self.path=path
 
-while(1):
 
-    #Convert BGR to HSV
-    hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
+class CVStuff():
+    img=''
+    hsv=''
+    mask=''
+    res=''
 
-    # define range of blue color in HSV
-    #lower_blue = np.array([110,50,50])
-    #upper_blue = np.array([130,255,255])
-    l_black = np.array([0,0,0])
+    l_black = np.array([0, 0, 0])
     u_black = np.array([200,50,100])
 
+    def __init__(self, path):
+        self.img=cv2.imread(path)
 
-    # Threshold the HSV image to get only blue colors
-    mask = cv2.inRange(hsv, l_black, u_black)
+    def resizeImg(self):
+        self.img=cv2.resize(self.img, (400,400))
 
-    # Bitwise-AND mask and original image
-    res = cv2.bitwise_and(img,img, mask= mask)
+    def filterBlack(self):
+        self.hsv = cv2.cvtColor(self.img, cv2.COLOR_BGR2HSV)
+        self.mask = cv2.inRange(self.hsv, self.l_black, self.u_black)
+        self.res = cv2.bitwise_and(self.img,self.img, mask=self.mask)
 
-    cv2.imshow('frame',img)
-    cv2.imshow('mask',mask)
-    #cv2.imshow('res',res)
+    def showImg(self):
+        cv2.imshow('frame',self.img)
+        cv2.imshow('mask',self.mask)
+
+#change path for other JPGs
+image=Images("IMG333.JPG")
+
+cvStuff=CVStuff(image.path)
+cvStuff.resizeImg()
+
+while(1):
+    cvStuff.filterBlack()
+    cvStuff.showImg()
     k = cv2.waitKey(5) & 0xFF
     if k == 27:
-        break
+      break
 
 cv2.destroyAllWindows()
