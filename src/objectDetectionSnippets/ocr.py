@@ -17,3 +17,6 @@ image = cv2.imread(path)
 cv2.imshow('hallo', image)
 cv2.waitKey(0)
 
+
+gay
+
