@@ -1,4 +1,4 @@
-#apelerkennung von sandro
+#ampelerkennung von sandro
 
 import numpy as np
 import cv2

@@ -24,71 +24,13 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="525">
-      <file leaf-file-name="example.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/example.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="14" selection-start-line="0" selection-start-column="14" selection-end-line="0" selection-end-column="14" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ocr.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/objectDetectionSnippets/ocr.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="174">
-              <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="10" selection-end-column="25" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="randomzahlen.jpg" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/objectDetectionSnippets/randomzahlen.jpg">
-          <provider selected="true" editor-type-id="images">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="IMG333.JPG" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/objectDetectionSnippets/IMG333.JPG">
-          <provider selected="true" editor-type-id="images">
-            <state />
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="imagedetection.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/objectDetectionSnippets/imagedetection.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="986">
-              <caret line="34" column="39" selection-start-line="34" selection-start-column="39" selection-end-line="34" selection-end-column="39" />
-              <folding>
-                <element signature="e#27#45#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="first.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/objectDetectionSnippets/first.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="87">
-              <caret line="4" column="22" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
-              <folding>
-                <element signature="e#0#18#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="farbfilter01.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/objectDetectionSnippets/farbfilter01.py">
-          <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <caret line="0" column="3" selection-start-line="0" selection-start-column="3" selection-end-line="0" selection-end-column="3" />
               <folding>
-                <element signature="e#0#10#0" expanded="true" />
+                <element signature="e#28#46#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -424,7 +366,14 @@
       <option name="project" value="LOCAL" />
       <updated>1478773500181</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="fucking traffic light detection solution">
+      <created>1478880442989</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1478880442989</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -465,7 +414,8 @@
     <MESSAGE value="gay" />
     <MESSAGE value="no gay" />
     <MESSAGE value="new file image detection" />
-    <option name="LAST_COMMIT_MESSAGE" value="new file image detection" />
+    <MESSAGE value="fucking traffic light detection solution" />
+    <option name="LAST_COMMIT_MESSAGE" value="fucking traffic light detection solution" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -503,7 +453,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#27#45#0" expanded="true" />
+            <element signature="e#28#46#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -559,7 +509,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#27#45#0" expanded="true" />
+            <element signature="e#28#46#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -615,7 +565,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#27#45#0" expanded="true" />
+            <element signature="e#28#46#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -698,10 +648,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/objectDetectionSnippets/imagedetection.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="986">
-          <caret line="34" column="39" selection-start-line="34" selection-start-column="39" selection-end-line="34" selection-end-column="39" />
+        <state relative-caret-position="0">
+          <caret line="0" column="3" selection-start-line="0" selection-start-column="3" selection-end-line="0" selection-end-column="3" />
           <folding>
-            <element signature="e#27#45#0" expanded="true" />
+            <element signature="e#28#46#0" expanded="true" />
           </folding>
         </state>
       </provider>
