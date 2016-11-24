@@ -157,6 +157,12 @@ class ShapeDetecter():
             cv2.rectangle(self.frame, (x_2, y_2), (x_2 + w_2, y_2 + h_2), (0, 0, 255), -1)
 
 
+            if (x + w <= x_2 + w_2 and y + h <= y_2 + h_2):
+                #camera = cv2.VideoCapture(0)
+                #picture1 = camera.read()[1]
+                #picture1 = cv2.resize(picture1, (400, 400))
+                #cv2.imwrite('picture1.jpg', picture1)
+                print ('CAP')
 
 
 
