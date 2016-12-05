@@ -1,15 +1,11 @@
-#neuer Versuch
-#glm
-#20.11.16
+#OpenCV3
+#marco
+#05.12.16
 
 import cv2
 import numpy as np
-import imutils
-#import pytesseract
-#from matplotlib.patches import Shadow
-#from time import sleep
-from scipy.spatial import distance as dist
 
+print(cv2.__version__)
 
 def order_points(pts):
     # initialzie a list of coordinates that will be ordered
@@ -45,9 +41,8 @@ def four_point_transform(image, pts):
     # maximum distance between bottom-right and bottom-left
     # x-coordiates or the top-right and top-left x-coordinates
 
-    #TODO
-    widthA = np.sqrt(((br[0] - bl[0]) ** 2) + ((br[1] - bl[1]) ** 2))-shapeD.w
-    widthB = np.sqrt(((tr[0] - tl[0]) ** 2) + ((tr[1] - tl[1]) ** 2))-shapeD.w
+    widthA = np.sqrt(((br[0] - bl[0]) ** 2) + ((br[1] - bl[1]) ** 2))
+    widthB = np.sqrt(((tr[0] - tl[0]) ** 2) + ((tr[1] - tl[1]) ** 2))
     maxWidth = max(int(widthA), int(widthB))
 
     # compute the height of the new image, which will be the
@@ -72,53 +67,8 @@ def four_point_transform(image, pts):
     M = cv2.getPerspectiveTransform(rect, dst)
     warped = cv2.warpPerspective(image, M, (maxWidth, maxHeight))
 
-    #captureP = CapturePhoto()
-    #captureP.capture(camera)
-
     # return the warped image
     return warped
-
-class CapturePhoto():
-    picture1 = ''
-    picture2 = ''
-    picture3 = ''
-    picture4 = ''
-    picture5 = ''
-
-
-    def capture(self, camera):
-
-        self.picture1 = camera.read()[1]
-        self.picture1 = cv2.resize(self.picture1, (400, 400))
-        print ('CAP1')
-
-        self.picture2 = camera.read()[1]
-        self.picture2 = cv2.resize(self.picture2, (400, 400))
-        print ('CAP2')
-
-        self.picture3 = camera.read()[1]
-        self.picture3 = cv2.resize(self.picture3, (400, 400))
-        print ('CAP3')
-
-        self.picture4 = camera.read()[1]
-        self.picture4 = cv2.resize(self.picture4, (400, 400))
-        print ('CAP4')
-
-        self.picture5 = camera.read()[1]
-        self.picture5 = cv2.resize(self.picture5, (400, 400))
-        print ('CAP5')
-
-
-        cv2.imwrite('picture1.jpg', self.picture1)
-        cv2.imwrite('picture2.jpg', self.picture2)
-        cv2.imwrite('picture3.jpg', self.picture3)
-        cv2.imwrite('picture4.jpg', self.picture4)
-        cv2.imwrite('picture5.jpg', self.picture5)
-
-
-
-
-
 
 class ShapeDetecter():
     frame = ''
@@ -145,18 +95,11 @@ class ShapeDetecter():
         self.frame=frame
         self.mask=mask
 
+
     def analyse(self):
+        image, contours, _ = cv2.findContours(self.mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 
-        # ret, thresh = cv2.threshold(self.mask, 127, 255, 0)
-        contours, hierarchy = cv2.findContours(self.mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
-
-        # >1 --> Test 24.11.16
         if len(contours) > 1:
-
-            #for cnt in contours:
-
-                #x, y, w, h = cv2.boundingRect(cnt)
-                #cv2.rectangle(self.frame, (x, y), (x + w, y + h), (0, 255, 0), -1)
 
             areaArray = []
 
@@ -169,45 +112,55 @@ class ShapeDetecter():
             largestcontour = sorteddate[0][1]
             secondlagestcontour = sorteddate[1][1]
 
-            x, y, self.w, self.h = cv2.boundingRect(largestcontour)
 
-            x_2, y_2, w_2, h_2 = cv2.boundingRect(secondlagestcontour)
+            # find minimum area
+            rect = cv2.minAreaRect(largestcontour)
+            # calculate coordinates of the minimum area rectangle
+            box = cv2.boxPoints(rect)
+            # normalize coordinates to integers
+            box_1 = np.int0(box)
 
-            cv2.rectangle(self.frame, (x, y), (x + self.w, y + self.h), (0, 255, 0), -1)
-            cv2.rectangle(self.frame, (x_2, y_2), (x_2 + w_2, y_2 + h_2), (0, 0, 255), -1)
+            # draw contours
+            cv2.drawContours(self.frame, [box_1], 0, (0, 0, 255), 3)
+            # calculate center and radius of minimum enclosing circle
+            #(x, y), radius = cv2.minEnclosingCircle(c)
+            # cast to integers
+            #center = (int(x), int(y))
+            #radius = int(radius)
+            # draw the circle
+            #img = cv2.circle(self.frame, center, radius, (0, 255, 0), 2)
 
+            #cv2.drawContours(self.frame, contours, -1, (255, 0, 0), 1)
 
+            # find minimum area
+            rect = cv2.minAreaRect(secondlagestcontour)
+            # calculate coordinates of the minimum area rectangle
+            box = cv2.boxPoints(rect)
+            # normalize coordinates to integers
+            box_2 = np.int0(box)
 
+            # draw contours
+            cv2.drawContours(self.frame, [box_2], 0, (0, 0, 255), 3)
+            # calculate center and radius of minimum enclosing circle
+            #(x, y), radius = cv2.minEnclosingCircle(c)
+            # cast to integers
+            #center = (int(x), int(y))
+            #radius = int(radius)
+            # draw the circle
+            #img = cv2.circle(self.frame, center, radius, (0, 255, 0), 2)
 
-            if (x + self.w <= x_2 + w_2 and y + self.h <= y_2 + h_2 and x + self.w >= 10 and y + self.h >= 20):
-                print ('CAP')
-                self.booleanFlag = True
+            #cv2.drawContours(self.frame, contours, -1, (255, 0, 0), 1)
 
-                a = np.array(largestcontour)
-                b = np.array(secondlagestcontour)
+            #a = np.array(largestcontour)
+            #b = np.array(secondlagestcontour)
 
+            pts = np.vstack((box_1, box_2)).squeeze()
 
-                pts = np.vstack((a,b)).squeeze()
+            warped = four_point_transform(self.frame, pts)
 
-                box = cv2.minAreaRect(pts)
-                box = cv2.cv.BoxPoints(box)
-                box = np.array(box, dtype="int")
+            cv2.imshow("warped", warped)
 
-                rect = order_points(box)
-
-                print(rect)
-
-
-                warped = four_point_transform(self.frame, rect)
-                cv2.imshow('warped', warped)
-
-
-
-
-        else:
-            print "Sorry nothing found"
-
-
+            colorFilter.filterBlack(warped)
 
 
 
@@ -216,7 +169,7 @@ class ShapeDetecter():
 
 
 
-class RedFilter():
+class ColorFilter():
     frame = ''
     hsv = ''
     mask = ''
@@ -225,6 +178,9 @@ class RedFilter():
 
     #lower_red = np.array([170, 50, 50])
     #upper_red = np.array([180, 255, 255])
+
+    l_black = np.array([0, 0, 0])
+    u_black = np.array([220, 50, 100])
 
     lower_red = np.array([170, 100, 100])
     upper_red = np.array([180, 255, 255])
@@ -240,6 +196,13 @@ class RedFilter():
         self.mask = cv2.inRange(self.hsv, self.lower_red, self.upper_red)
         self.res = cv2.bitwise_and(self.frame, self.frame, mask=self.mask)
 
+    def filterBlack(self, img):
+        hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
+        mask = cv2.inRange(hsv, self.l_black, self.u_black)
+        res = cv2.bitwise_and(img,img, mask=mask)
+
+        cv2.imshow('blacked', mask)
+
 
     def smothAndBlur(self, which):
         self.blurred = cv2.GaussianBlur(which, (5, 5), 0)
@@ -248,22 +211,21 @@ class RedFilter():
         cv2.imshow(WindowName, which)
 
 
-
+#Change to 1 for USB Cam
 camera = cv2.VideoCapture(0)
 
 while(1):
     (grabbed, frame) = camera.read()
 
-    redFiler = RedFilter(frame)
-    redFiler.resizeImg()
-    redFiler.filterRed()
+    colorFilter = ColorFilter(frame)
+    #redFiler.resizeImg()
+    colorFilter.filterRed()
 
-    redFiler.smothAndBlur(redFiler.mask)
-    #redFiler.showImg('mask',redFiler.mask)
+    colorFilter.smothAndBlur(colorFilter.mask)
 
-    redFiler.showImg('blured',redFiler.blurred)
+    colorFilter.showImg('blured', colorFilter.blurred)
 
-    shapeD = ShapeDetecter(redFiler.frame, redFiler.blurred)
+    shapeD = ShapeDetecter(colorFilter.frame, colorFilter.blurred)
     shapeD.analyse()
     shapeD.showImg('detected', shapeD.frame)
 
